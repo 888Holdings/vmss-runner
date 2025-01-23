@@ -9,6 +9,7 @@ Set-PSDebug -Trace 2
 Write-Output "Write-Output output from 888: $($MyInvocation.MyCommand.Name)"
 New-Item -Path $folder -Type Directory
 Set-Location $folder
+Write-Output "$($org)"
 Write-Output "$($pat)"
 Write-Output "$($folder)"
 $headers = @{
@@ -17,6 +18,7 @@ $headers = @{
     "X-GitHub-Api-Version" = "2022-11-28"
 }
 $regTokenUrl = "https://api.github.com/orgs/$($org)/actions/runners/registration-token"
+Write-Output "$($regTokenUrl)"
 $r = Invoke-RestMethod -Method Post -Uri $regTokenUrl -Headers $headers
 $token = $r.token
 Write-Output "$($r.token)"
