@@ -28,6 +28,6 @@ $currentDateTime = Get-Date
 $runnerName = $currentDateTime.ToString("yyyyMMdd-HHmmss")
 Invoke-WebRequest -Uri https://github.com/actions/runner/releases/download/v2.321.0/actions-runner-win-x64-2.321.0.zip -OutFile actions-runner-win-x64-2.321.0.zip -Verbose
 Add-Type -AssemblyName System.IO.Compression.FileSystem ; [System.IO.Compression.ZipFile]::ExtractToDirectory("$PWD/actions-runner-win-x64-2.321.0.zip", "$PWD")
-.\config.cmd --url https://github.com/$org --token $token --runasservice --windowslogonaccount $windowsLogonAccount --windowslogonpassword $windowsLogonPassword --name $runnerName --unattended
+.\config.cmd --url https://github.com/$org --token $token --runasservice --windowslogonaccount $windowsLogonAccount --windowslogonpassword $windowsLogonPassword --name $runnerName --ephemeral --unattended
 exit 2
 Stop-Transcript
